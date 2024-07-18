@@ -1,20 +1,26 @@
 package cl.praxis.tiendita.model.dto;
 
+/**
+ * Esta clase reside los datos relativos al producto
+ * @author Brian Guzmán
+ */
 public class Product {
 
   private int id;
   private String name;
   private String description;
   private Double price;
+  private String url;
 
   public Product() {
   }
 
-  public Product(int id, String name, String description, Double price) {
+  public Product(int id, String name, String description, Double price, String url) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
+    this.url = url;
   }
 
   public int getId() {
@@ -47,5 +53,13 @@ public class Product {
 
   public void setPrice(Double price) {
     this.price = price;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

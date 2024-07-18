@@ -1,8 +1,10 @@
 package cl.praxis.tiendita.controller;
 
 import cl.praxis.tiendita.model.dto.Product;
+import cl.praxis.tiendita.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
@@ -13,19 +15,21 @@ import java.util.List;
 @RequestMapping("/")
 public class ProductController {
 
+  private ProductService service = new ProductService();
 
   @GetMapping
   public String findAll(Model model){
 
-    // private ProductService service = new ProductService();
-    List<Product> list = new ArrayList<Product>();
+    model.addAttribute("products", service.getAll());
 
-    list.add(new Product(1, "iPhone 10", "Un celular que funciona muy bien pero está viejito", 700d));
-    list.add(new Product(2, "iPhone 11", "Un celular que funciona muy bien pero está viejito", 800d));
-    list.add(new Product(3, "iPhone 12", "Un celular que funciona muy bien pero está viejito", 900d));
+    return "index";
+  }
 
-    model.addAttribute("products", list);
+  // así se recibe un parámetro por la query
+  @GetMapping("/{id}")
+  public String findOne(@PathVariable("id") int id, Model model){
 
+    System.out.println(id);
     return "index";
   }
 }
