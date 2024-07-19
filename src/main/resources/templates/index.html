@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tiendita de Productos</title>
@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <h5 class="card-title" th:text="${p.getName()}"></h5>
                         <p class="card-text" th:text="${p.getDescription()}"></p>
-                        <p class="card-text" th:text="${p.getPrice()}"></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <p class="card-text" th:text="${#numbers.formatDecimal(p.getPrice(),3,'POINT',2,'COMMA')}"></p>
+                        <a th:href="@{/product/{id}(id=${p.getId()})}" class="btn btn-primary">Ver Detalles</a>
                     </div>
                 </div>
             </div>
